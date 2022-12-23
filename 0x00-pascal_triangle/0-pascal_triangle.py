@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """
 defines a function that compute pascal triangle
 """
@@ -22,4 +21,4 @@ def pascal_triangle(n):
             i += 1
         coefs.append(new)
         j += 1
-    return coef
+    return coefs
