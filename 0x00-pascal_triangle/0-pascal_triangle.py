@@ -1,4 +1,4 @@
-!#/usr/bin/python3
+#!/usr/bin/python3
 """
 defines a function that compute pascal triangle
 """
