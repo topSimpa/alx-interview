@@ -3,6 +3,8 @@
 
 def canUnlockAll(boxes):
     """return true if boxes can be unlocked"""
+    if not boxes:
+        return True
     to_unlock = {0: 0}
     for i in range(1, len(boxes)):
         to_unlock[i] = None
