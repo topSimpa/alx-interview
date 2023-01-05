@@ -14,6 +14,4 @@ def canUnlockAll(boxes):
                 if key < box:
                     for back in boxes[key]:
                         to_unlock[back] = back
-    print(set(range(1, len(boxes))))
-    print(set(to_unlock.values()))
     return (set(to_unlock.keys())).issubset(set(to_unlock.values()))
