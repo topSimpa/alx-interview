@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 """solution to lockboxes"""
 
 def canUnlockAll(boxes):
@@ -14,4 +13,6 @@ def canUnlockAll(boxes):
                 if key < box:
                     for back in boxes[key]:
                         to_unlock[back] = back
-    return (set(range(1, len(boxes))).issubset(set(to_unlock.values())))
+    print(set(range(1, len(boxes))))
+    print(set(to_unlock.values()))
+    return (set(to_unlock.keys())).issubset(set(to_unlock.values()))
