@@ -1,4 +1,8 @@
+#!/usr/bin/python3
+"""solution to lockboxes"""
+
 def canUnlockAll(boxes):
+    """return true if boxes can be unlocked"""
     to_unlock = {0: 0}
     for i in range(1, len(boxes)):
         to_unlock[i] = None
