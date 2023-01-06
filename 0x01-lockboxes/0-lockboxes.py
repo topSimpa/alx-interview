@@ -8,6 +8,6 @@ def canUnlockAll(boxes):
     for box in range(0, len(boxes)):
         if box in s:
             for i in boxes[box]:
-                if i < len[boxes]
+                if i < len(boxes):
                     s = s.union(set(boxes[i]))
     return set(range(1, len(boxes))).issubset(s)
