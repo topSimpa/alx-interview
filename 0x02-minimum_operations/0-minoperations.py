@@ -2,7 +2,7 @@
 """solution to minimum Operation interview question"""
 
 
-def copy(k, int):
+def copy(k, op):
     """carry out the copy operations"""
     return (k, op + 1)
 
@@ -14,7 +14,7 @@ def paste(k, c, op):
 
 def minOperations(n):
     """calculate the minioperation needed for nH"""
-    if n <= 1:
+    if n <= 1 and type(n) != 'int':
         return (0)
     op, k = 2, 2
     c = 1
