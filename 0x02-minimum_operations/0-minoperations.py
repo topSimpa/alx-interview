@@ -1,17 +1,18 @@
 #!/usr/bin/python3
 """solution to minimum Operation interview question"""
-from typing import Tuple
 
 
-def copy(k: int, op: int) -> Tuple[int]:
+def copy(k, int):
     """carry out the copy operations"""
     return (k, op + 1)
 
-def paste(k: int, c: int, op: int) -> Tuple[int]:
+
+def paste(k, c, op):
     """carry out the paste operations"""
     return (k + c, op + 1)
 
-def minOperation(n: int) -> int:
+
+def minOperation(n):
     """calculate the minioperation needed for nH"""
     if n <= 1:
         return (0)
