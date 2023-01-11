@@ -12,7 +12,7 @@ def paste(k, c, op):
     return (k + c, op + 1)
 
 
-def minOperation(n):
+def minOperations(n):
     """calculate the minioperation needed for nH"""
     if n <= 1:
         return (0)
