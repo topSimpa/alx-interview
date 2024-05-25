@@ -95,6 +95,6 @@ try:
         if count % 10 == 0:
             # call log_print
             log_print()
-except KeyboardInterrupt:
+except EOFError:
     log_print()
     sys.exit(0)
