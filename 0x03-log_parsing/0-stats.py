@@ -87,16 +87,14 @@ try:
             status_code_regex +
             size_regex,
             line)
-        # check if format
         if (format_check):
             collect(print_det)
-            # check if count == 0
-            if count == 10:
-                # call log_print
-                count = 0
-                log_print()
         else:
             continue
+        #check if count is multiple of 10
+        if count % 10 == 0:
+            # call log_print
+            log_print()
 except KeyboardInterrupt:
     log_print()
     sys.exit(0)
