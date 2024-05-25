@@ -48,13 +48,13 @@ def log_print():
 
 
 # define Signal handler
-def handler(signum, frame):
+#def handler(signum, frame):
     # call  log_print
     # global interrupted
     # interrupted = True
     # try:
-    log_print()
-    sys.exit()
+    #log_print()
+    #sys.exit()
     # raise KeyboardInterrupt
     # except KeyboardInterrupt as e:
     #    print(e)
@@ -63,7 +63,7 @@ def handler(signum, frame):
 
 # invoke signal handler
 # signal.signal(signal.SIGINT, handler)
-signal.signal(signal.SIGINT, handler)
+#signal.signal(signal.SIGINT, handler)
 # print(e)
 # print(handler)
 # print(signal.getsignal(signal.SIGINT))
@@ -95,6 +95,7 @@ try:
         if count % 10 == 0:
             # call log_print
             log_print()
-except EOFError:
+except Exception as e:
+    pass
+finally:
     log_print()
-    sys.exit(0)
