@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+   Program does a log parsing
+"""
+
 import sys
 import signal
 import re
