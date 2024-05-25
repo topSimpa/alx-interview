@@ -26,14 +26,12 @@ size_regex = r'102[0-4]|10[01][0-9]|\d{3}|\d{2}|\d'
 # define a function that collects the line read from stdin
 
 
-def collect(line):
-    size_check = re.search(size_regex, line)
-    file_sizes.append(int(size_check.group()))
-    status_code_check = re.search(status_code_regex, line)
-    if status_code_check.group() in status_code.keys():
-        status_code[status_code_check.group()] += 1
+def collect(print_det):
+    file_sizes.append(int(print_det[1]))
+    if print_det[0] in status_code.keys():
+        status_code[print_det[0]] += 1
     else:
-        status_code[status_code_check.group()] = 0
+        status_code[print_det[0]] = 1
 
 
 # log_print: write function that prints as requested
@@ -43,7 +41,7 @@ def log_print():
     print(f'File size: {sum(file_sizes)}')
     # Loop through the status_code and then print each key value pair in this
     # format
-    for key, value in status_code.items():
+    for key, value in dict(sorted(status_code.items())).items():
         if value > 0:
             # print(f'{key}: {value}')
             print(f'{key}: {value}')
@@ -78,6 +76,9 @@ try:
             # if line matches format
         count += 1
         line = line.split()
+        print_det = line[7: 9]
+        print(line)
+        print(print_det)
         line = ''.join(line)
         format_check = re.match(
             ip_address_regex +
@@ -88,7 +89,7 @@ try:
             line)
         # check if format
         if (format_check):
-            collect(line)
+            collect(print_det)
             # check if count == 0
             if count == 10:
                 # call log_print
