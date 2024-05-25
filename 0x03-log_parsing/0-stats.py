@@ -77,8 +77,8 @@ try:
         count += 1
         line = line.split()
         print_det = line[7: 9]
-        print(line)
-        print(print_det)
+        #print(line)
+        #print(print_det)
         line = ''.join(line)
         format_check = re.match(
             ip_address_regex +
