@@ -70,11 +70,7 @@ def log_print():
 # start loop that reads stdin
 try:
     for line in sys.stdin:
-        if interrupted:
-            print('true')
-            # sys.exit(1)
-            # if line matches format
-        #print(line)
+
         line = line.split()
         #print(line)
         print_det = line[7: 9]
@@ -93,7 +89,6 @@ try:
         print(line + 'JOINED')
         if (format_check):
             print(format_check.group())
-            print(
             collect(print_det)
             count  += 1
         else:
