@@ -92,7 +92,9 @@ try:
             status_code_regex +
             size_regex,
             line)
+        print(line)
         if (format_check):
+            print(format_check.group())
             collect(print_det)
         else:
             continue
