@@ -14,11 +14,11 @@ interrupted = False
 status_code = {}
 
 # define the different regex and save them in variables
-ip_address_regex = r'((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9])'
-date_regex = r'-\d{4}-\d{2}-\d{2} (2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\.\d{6}'
-text_regex = r'"GET/projects/260HTTP/1.1"'
-status_code_regex = r'200|301|400|401|403|404|405|500'
-size_regex = r'102[0-4]|10[01][0-9]|\d{3}|\d{2}|\d'
+ip_address_regex = r'(((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9]))'
+date_regex = r'(-\[\d{4}-\d{2}-\d{2}(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\.\d{6}\])'
+text_regex = r'("GET/projects/260HTTP/1.1")'
+status_code_regex = r'(200|301|400|401|403|404|405|500)'
+size_regex = r'(102[0-4]|10[01][0-9]|\d{3}|\d{2}|\d)'
 
 # write a function collect: collect important details and store in
 # File_sizes and status_code
@@ -75,12 +75,17 @@ try:
             # sys.exit(1)
             # if line matches format
         count += 1
+
+        #print(line)
         line = line.split()
+        print(line)
         print_det = line[7: 9]
         #print(line)
         #print(print_det)
         line = ''.join(line)
-        format_check = re.match(
+        #print(line)
+        #print(ip_address_regex + date_regex + text_regex + status_code_regex + size_regex)
+        format_check = re.fullmatch(
             ip_address_regex +
             date_regex +
             text_regex +
