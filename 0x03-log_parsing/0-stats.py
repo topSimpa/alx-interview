@@ -78,7 +78,7 @@ try:
 
         #print(line)
         line = line.split()
-        print(line)
+        #print(line)
         print_det = line[7: 9]
         #print(line)
         #print(print_det)
