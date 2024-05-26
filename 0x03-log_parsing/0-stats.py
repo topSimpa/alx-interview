@@ -18,7 +18,7 @@ ip_address_regex = r'(((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9])\.){3}(25[0-5]
 date_regex = r'(-\[\d{4}-\d{2}-\d{2}(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\.\d{6}\])'
 text_regex = r'("GET/projects/260HTTP/1.1")'
 status_code_regex = r'(200|301|400|401|403|404|405|500)'
-size_regex = r'(102[0-4]|10[01][0-9]|\d{3}|\d{2}|\d)'
+size_regex = r'(102[0-4]|10[01][0-9]|\d{3}|\d{2}|\d{1})'
 
 # write a function collect: collect important details and store in
 # File_sizes and status_code
