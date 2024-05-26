@@ -79,16 +79,16 @@ try:
         line = ''.join(line)
         #print(line)
         #print(ip_address_regex + date_regex + text_regex + status_code_regex + size_regex)
-        format_check = re.match(
+        format_check = re.fullmatch(
             ip_address_regex +
             date_regex +
             text_regex +
             status_code_regex +
             size_regex,
             line)
-        print(line + 'JOINED')
+        #print(line + 'JOINED')
         if (format_check):
-            print(format_check.group())
+            #print(format_check.group())
             collect(print_det)
             count  += 1
         else:
