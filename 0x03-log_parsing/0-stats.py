@@ -85,7 +85,7 @@ try:
         line = ''.join(line)
         #print(line)
         #print(ip_address_regex + date_regex + text_regex + status_code_regex + size_regex)
-        format_check = re.fullmatch(
+        format_check = re.match(
             ip_address_regex +
             date_regex +
             text_regex +
