@@ -41,7 +41,7 @@ def log_print():
     print(f'File size: {sum(file_sizes)}')
     # Loop through the status_code and then print each key value pair in this
     # format
-    for key, value in dict(sorted(status_code.items())).items():
+    for key, value in sorted(status_code.items()):
         if value > 0:
             # print(f'{key}: {value}')
             print(f'{key}: {value}')
@@ -74,8 +74,6 @@ try:
             print('true')
             # sys.exit(1)
             # if line matches format
-        count += 1
-
         #print(line)
         line = line.split()
         #print(line)
@@ -95,7 +93,9 @@ try:
         print(line + 'JOINED')
         if (format_check):
             print(format_check.group())
+            print(
             collect(print_det)
+            count  += 1
         else:
             continue
         #check if count is multiple of 10
