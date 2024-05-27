@@ -25,7 +25,7 @@ def many_bytes(num):
     for i in a_byte:
         if i == '0':
             break
-        n_bytes = +1
+        n_bytes += 1
     return (n_bytes)
 
 
@@ -44,10 +44,11 @@ def validUTF8(data):
             continue
         else:
             n_bytes = many_bytes(data[i])
-            try:
-                con_num = data[i: (i + n_bytes + 1)]
-            except IndexError as e:
+            # print(f"i am {n_bytes} bytes")
+            # print("tried")
+            if (i + n_bytes + 1) > len(data):
                 return (False)
+            con_num = data[i: (i + n_bytes + 1)]
             j = 0
             while (j < len(con_num) - 1):
                 j_cur = int(xtract(con_num[j]), 2)
