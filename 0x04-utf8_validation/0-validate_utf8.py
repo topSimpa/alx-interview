@@ -36,7 +36,7 @@ def right_shift(num):
 
 def validUTF8(data):
     i = 0
-    t = True
+    t = False
     while (i < len(data)):
         if is_byte(data[i]):
             t = True
