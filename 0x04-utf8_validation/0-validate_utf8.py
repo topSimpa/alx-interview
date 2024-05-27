@@ -56,5 +56,6 @@ def validUTF8(data):
                 # print(j_cur, j_next)
                 if right_shift(j_cur) != j_next:
                     return (False)
+                j += 1
             i = i + n_bytes + 1
     return (t)
