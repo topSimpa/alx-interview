@@ -12,7 +12,7 @@ def xtract(num):
             bits += i
             break
         bits += i
-
+    return(bits)
 
 def is_byte(num):
     return (num < 128)
@@ -33,8 +33,6 @@ def right_shift(num):
 
 
 def validUTF8(data):
-    # check if len(list) > 0:
-
     i = 0
     t = True
     while (i < len(data)):
@@ -50,7 +48,9 @@ def validUTF8(data):
                 return (False)
             j = 0
             while (j < len(con_num) - 1):
-                if right_shift(j) != con_num[j + 1]:
+                j_cur = int(xtract(con_num[j]), 2)
+                j_next = int(xtract(con_num[j + 1]), 2)
+                if right_shift(j_cur) != j_next:
                     return (False)
             i = i + n_bytes + 1
     return (t)
