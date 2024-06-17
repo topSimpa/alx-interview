@@ -32,8 +32,8 @@ def many_bytes(num):
     if (len(a_byte) < 8):
         a_byte = ((8 - len(a_byte)) * '0') + a_byte
         # print(a_byte)
-    elif len(a_byte) > 8:
-        return (-1)
+    #elif len(a_byte) > 8:
+        #return (-1)
     n_bytes = 0
     for i in a_byte:
         if i == '0':
