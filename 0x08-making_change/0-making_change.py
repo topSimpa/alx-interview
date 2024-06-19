@@ -4,7 +4,7 @@
 """
 
 
-def makeChange(coins: list[int], total: int) -> int:
+def makeChange(coins, total) -> int:
     """makechange function"""
 
     divd = total
