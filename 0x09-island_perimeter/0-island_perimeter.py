@@ -12,7 +12,7 @@ def island_perimeter(grid):
     if ((sum(grid[0]) != 0) or (sum(grid[-1]) != 0)):
         return (0)
 
-    for row in range(1, len(grid) - 1):
+    for row in range(0, len(grid)):
         col = hold_col
         while (col < len(grid[row])):
             if ((grid[row][col] == 1) and (hold_col == 0)):
