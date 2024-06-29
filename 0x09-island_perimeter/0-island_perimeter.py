@@ -3,10 +3,14 @@
 	island perimeter
 """
 
+
 def island_perimeter(grid):
     """island_perimeter"""
     hold_col = 0
     count = 0
+
+    if not (sum(grid[0]) or sum(grid[-1])):
+        return (0)
 
     for row in range(1, len(grid) - 1):
         col = hold_col
