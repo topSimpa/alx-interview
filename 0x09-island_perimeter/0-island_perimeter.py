@@ -4,25 +4,36 @@
 """
 
 
+def connet(grid, row, col, conet):
+    """return connetion"""
+    if row:
+        if grid[row - 1][col]:
+            conet += 1
+    if row != len(grid) - 1:
+        if grid[row + 1][col]:
+            conet += 1
+    if col:
+        if grid[row][col - 1]:
+            conet += 1
+    if col != len(grid[row]) - 1:
+        if grid[row][col + 1]:
+            conet += 1
+    return (conet)
+
+
 def island_perimeter(grid):
     """island_perimeter"""
-    hold_col = 0
     count = 0
 
-    if ((sum(grid[0]) != 0) or (sum(grid[-1]) != 0)):
-        return (0)
-
-    for row in range(0, len(grid)):
-        col = hold_col
-        while (col < len(grid[row])):
-            if ((grid[row][col] == 1) and (hold_col == 0)):
-                hold_col = col
-            if (grid[row][col] == 1):
-                count += 1
-            elif ((hold_col != 0) and (grid[row][col] == 0)):
-                break
-            col += 1
-    if count == 0:
-        return (0)
-
-    return (((count - 2) * 2) + 6)
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            conet = 0
+            conet = connet(grid, row, col, conet)
+            if grid[row][col]:
+                count += (4 - conet)
+                if conet == 0:
+                    return (count)
+            else:
+                if conet == 4:
+                    return (0)
+    return (count)
