@@ -29,7 +29,7 @@ def firstPrime(array):
 def isWinner(x, nums):
     """find who is the winner in the prime game"""
     count_dict = {'M': 0, 'B': 0}
-    for rnd in range(3):
+    for rnd in range(x):
         num = nums[rnd]
         array = list(range(1, num + 1))
         key = 'M'
