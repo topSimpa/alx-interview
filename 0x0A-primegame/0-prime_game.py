@@ -4,24 +4,26 @@
 """
 
 
+def is_prime(num):
+    """check if a number is prime"""
+    if num <= 1:
+        return False
+    if num == 2:
+        return True
+    if num % 2 == 0:
+        return False
+    for i in range(3, int(num ** 0.5) + 1, 2):
+        if num % i == 0:
+            return False
+    return True
+
+
 def firstPrime(array):
     """find the first prime number in array"""
-
     for num in array:
-        pos_factor = list(range(2, (num // 2) + 1))
-        if (pos_factor == []) and (num != 1):
+        if is_prime(num):
             return (num)
-        for fac in pos_factor:
-            if num % fac == 0:
-                break
-            if fac == pos_factor[-1]:
-                return (num)
     return (None)
-
-
-"""print(firstPrime([4, 5, 6, 8, 9]))
-print(firstPrime([4, 6, 8]))
-print(firstPrime([4, 6, 8, 2]))"""
 
 
 def isWinner(x, nums):
