@@ -1,84 +1,42 @@
 #!/usr/bin/python3
-"""
-   Program does a log parsing
-"""
+"""Solution to interview exercise
+ 0x03-log_parsing"""
 
 import sys
-import signal
 import re
 
-# set count to zero, file_sizes to [], status_code to {}
-count = 0
-file_sizes = []
-interrupted = False
-status_code = {}
-
-# define the different regex and save them in variables
 ip_address_regex = r'(((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9]))'
 date_regex = r'(-\[\d{4}-\d{2}-\d{2}(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\.\d{6}\])'
 text_regex = r'("GET/projects/260HTTP/1.1")'
 status_code_regex = r'(200|301|400|401|403|404|405|500)'
 size_regex = r'(102[0-4]|10[01][0-9]|\d{3}|\d{2}|\d{1})'
 
-# write a function collect: collect important details and store in
-# File_sizes and status_code
 
-# define a function that collects the line read from stdin
-
-
-def collect(print_det):
-    file_sizes.append(int(print_det[1]))
-    if print_det[0] in status_code.keys():
-        status_code[print_det[0]] += 1
-    else:
-        status_code[print_det[0]] = 1
-
-
-# log_print: write function that prints as requested
-def log_print():
-    # orders status code
-    # print(f'File size:  {sum(file_size)})
-    print(f'File size: {sum(file_sizes)}')
-    # Loop through the status_code and then print each key value pair in this
-    # format
-    for key, value in sorted(status_code.items()):
-        if value > 0:
-            # print(f'{key}: {value}')
-            print(f'{key}: {value}')
+count = 0
+total_size = 0
+status_code_count = {
+    '200': 0,
+    '301': 0,
+    '400': 0,
+    '401': 0,
+    '403': 0,
+    '404': 0,
+    '405': 0,
+    '500': 0}
 
 
-# define Signal handler
-#def handler(signum, frame):
-    # call  log_print
-    # global interrupted
-    # interrupted = True
-    # try:
-    #log_print()
-    #sys.exit()
-    # raise KeyboardInterrupt
-    # except KeyboardInterrupt as e:
-    #    print(e)
-    # raise KeyboardInterruptt
+def print_stats():
+    print(f"File size: {total_size}")
+    for key in status_code_count.keys():
+        if status_code_count[key] > 0:
+            print(f"{key}: {status_code_count[key]}")
 
 
-# invoke signal handler
-# signal.signal(signal.SIGINT, handler)
-#signal.signal(signal.SIGINT, handler)
-# print(e)
-# print(handler)
-# print(signal.getsignal(signal.SIGINT))
-# start loop that reads stdin
 try:
     for line in sys.stdin:
-
-        line = line.split()
-        #print(line)
-        print_det = line[7: 9]
-        #print(line)
-        #print(print_det)
-        line = ''.join(line)
-        #print(line)
-        #print(ip_address_regex + date_regex + text_regex + status_code_regex + size_regex)
+        line = line.strip()
+        field_list = line.split()
+        line = ''.join(field_list)
         format_check = re.fullmatch(
             ip_address_regex +
             date_regex +
@@ -86,18 +44,15 @@ try:
             status_code_regex +
             size_regex,
             line)
-        #print(line + 'JOINED')
         if (format_check):
-            #print(format_check.group())
-            collect(print_det)
-            count  += 1
-        else:
-            continue
-        #check if count is multiple of 10
-        if count % 10 == 0:
-            # call log_print
-            log_print()
-except Exception as e:
-    pass
-finally:
-    log_print()
+            [status, size] = field_list[7:]
+            total_size += int(size)
+            status_code_count[status] += 1
+            count += 1
+        if count == 10:
+            count = 0
+            print_stats()
+except KeyboardInterrupt:
+    count = 0
+    print_stats()
+    sys.exit(0)
