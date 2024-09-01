@@ -17,11 +17,12 @@ status_code_count = {
 }
 
 # Regular expression patterns for the expected log format components
-ip_address_regex = r'\d{1,3}(\.\d{1,3}){3}'  # Matches an IP address
-date_regex = r' - \[\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d+\]'  # Matches date
-text_regex = r' "GET /projects/260 HTTP/1\.1" '  # Matches the specific GET request
-status_code_regex = r'\d{3}'  # Matches the status code
-size_regex = r'\d+'  # Matches the file size
+ip_address_regex = r'(((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]?[0-9]))'
+date_regex = r'(-\[\d{4}-\d{2}-\d{2}(2[0-3]|[0-1][0-9]):([0-5][0-9]):([0-5][0-9])\.\d{6}\])'
+text_regex = r'("GET/projects/260HTTP/1.1")'
+status_code_regex = r'(200|301|400|401|403|404|405|500)'
+size_regex = r'(102[0-4]|10[01][0-9]|\d{3}|\d{2}|\d{1})'
+
 
 def print_stats():
     """
@@ -35,15 +36,16 @@ def print_stats():
 try:
     for line in sys.stdin:
         line = line.strip()
+        fields = line.split()
+        line = ''.join(fields)
         # Regex pattern to match the entire line format
         match = re.match(
-            rf"^{ip_address_regex}{date_regex}{text_regex}({status_code_regex}) ({size_regex})$", line
+            rf"^{ip_address_regex}{date_regex}{text_regex}({status_code_regex})({size_regex})$", line
         )
 
         if match:
             # Extract status code and file size from the matched groups
-            status = match.group(1)
-            size = match.group(2)
+            [status, size] = fields[7: ]
 
             # Update total size and count for the matched status code
             total_size += int(size)
