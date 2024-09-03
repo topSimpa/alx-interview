@@ -40,12 +40,12 @@ try:
         line = ''.join(fields)
         # Regex pattern to match the entire line format
         match = re.match(
-            rf"^{ip_address_regex}{date_regex}{text_regex}({status_code_regex})({size_regex})$", line
+            rf"^{ip_address_regex}{date_regex}{text_regex}{status_code_regex}{size_regex}$", line
         )
 
         if match:
             # Extract status code and file size from the matched groups
-            [status, size] = fields[7: ]
+            [status, size] = [match.group(10), match.group(11)]
 
             # Update total size and count for the matched status code
             total_size += int(size)
