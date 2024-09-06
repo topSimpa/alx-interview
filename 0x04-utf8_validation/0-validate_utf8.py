@@ -44,7 +44,7 @@ def validUTF8(data):
             return False
         elif n_bytes is None:
             return False
-        if len(data[cur_position : cur_position + n_bytes]) < n_bytes:
+        if len(data[cur_position: cur_position + n_bytes]) < n_bytes:
             return False
         if not valid_sequence(data[cur_position + 1: cur_position + n_bytes]):
             return False
