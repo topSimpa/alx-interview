@@ -30,7 +30,7 @@ def valid_sequence(chars):
     return True
 
 
-def utf8_validation(data):
+def validUTF8(data):
     """Utf8-Validation
        -Validate if coding is in utf8-format
     """
@@ -43,6 +43,8 @@ def utf8_validation(data):
         elif n_bytes == 1:
             return False
         elif n_bytes is None:
+            return False
+        if len(data[cur_position : cur_position + n_bytes]) < n_bytes:
             return False
         if not valid_sequence(data[cur_position + 1: cur_position + n_bytes]):
             return False
