@@ -22,16 +22,12 @@ def bytes_counter(num):
 
 
 def valid_sequence(chars):
-    """to check if a byte start with 10
+    """ to check if a byte start with 10
     """
-    for char in chars:
-        if bytes_counter(char) != 1:
-            return False
-    return True
-
+    return (sum([char >> 6  for char in chars]) == (2 * len(chars)))
 
 def validUTF8(data):
-    """Utf8-Validation
+    """ Utf8-Validation
        -Validate if coding is in utf8-format
     """
     cur_position = 0
