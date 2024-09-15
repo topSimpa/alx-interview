@@ -7,6 +7,7 @@ def bytes_counter(num):
     """
     count the number of 1 which interprete to num_bytes of first member of data
     """
+    num = num & 255
     shift_val = num >> 3
     if shift_val >= 0 and shift_val <= 15:
         return 0
